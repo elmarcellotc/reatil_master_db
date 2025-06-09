@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: RetailMasterDB
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"   # Reads from .env file
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./data:/var/opt/mssql         # Persisted DB data
+      - ./init-db:/init-db            # Mount your SQL script folders
+      - ./test:/test                  # Tests scripts
+      - ./test-logs:/test-logs        # Tests logs
+
+    command: >
+      bash -c "sleep 15 &&
+               /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${SA_PASSWORD} -i /init-db/99_master_init.sql"
