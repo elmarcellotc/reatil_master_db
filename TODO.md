@@ -2,7 +2,13 @@
 
 ---
 
-## ✅ 1. Run Database Tests (with Logs!)
+
+## FIRST AND MOST IMPORTANT:
+
+- Fix order tree order in master README based in init sql script new version
+- Check external apps (external to docker container) can read RetailMasterDB. It may be necessary to create a user with view access.
+
+## ✅ Run Database Tests (with Logs!)
 
 > 🎯 All tests must generate a **log file or test result output** — no silent passes!
 
