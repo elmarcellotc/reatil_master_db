@@ -1,7 +1,7 @@
 CREATE TABLE StoreAcquisitionItems (
-    EventID NVARCHAR(30) NOT NULL,                -- FK to StoreAcquisitionEvents
-    ItemID NVARCHAR(20) NOT NULL,                 -- FK to Items
-    WarehouseID NVARCHAR(20) NOT NULL,            -- FK to Warehouses
+    EventID VARCHAR(30) NOT NULL,                   -- FK to StoreAcquisitionEvents
+    ItemID VARCHAR(20) NOT NULL,                    -- FK to Items
+    WarehouseID VARCHAR(20) NOT NULL,               -- FK to Warehouses
     Quantity DECIMAL(14, 2) NOT NULL CHECK (Quantity > 0),
     ItemExpense DECIMAL(14, 2) NOT NULL CHECK (ItemExpense >= 0),
 
@@ -19,4 +19,3 @@ CREATE TABLE StoreAcquisitionItems (
         REFERENCES Warehouses(WarehouseID)
         ON DELETE CASCADE
 );
-GO

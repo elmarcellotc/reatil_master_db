@@ -1,6 +1,6 @@
 CREATE TABLE WarehouseStores (
-    WarehouseID NVARCHAR(20) NOT NULL,
-    StoreID NVARCHAR(20) NOT NULL,
+    WarehouseID VARCHAR(20) NOT NULL,   -- FK to Warehouses
+    StoreID VARCHAR(20) NOT NULL,       -- FK to Stores
 
     CONSTRAINT PK_WarehouseStores PRIMARY KEY (WarehouseID, StoreID),
 
@@ -12,4 +12,3 @@ CREATE TABLE WarehouseStores (
         REFERENCES Stores(StoreID)
         ON DELETE CASCADE
 );
-GO

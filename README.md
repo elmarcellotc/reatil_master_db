@@ -33,6 +33,13 @@ docker-compose up --build
 docker-compose up
 ```
 
+To acces to the docker terminal
+```bash
+docker exec -it RetailMasterDB bash
+```
+
+To get out from the docker terminal, use Cntrl+P and then Cntrl+Q
+
 🛑 Stop the Running Container
 
 ```bash
@@ -68,6 +75,10 @@ RetailMasterDB/
 ├── .env # Environment variables (e.g. SA_PASSWORD)
 │
 ├── docker-compose.yml # Docker Compose setup with volumes & startup script
+│
+├── scripts/ # Docker Compose setup with volumes & startup script
+│ ├── install.sh # Install MySQL server and setup tables
+│ └── init.sh    # Initialize MySQL server 
 │
 ├── data/ # 📦 Persistent database data (mounted volume)
 │ └── ...

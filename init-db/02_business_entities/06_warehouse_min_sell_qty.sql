@@ -1,14 +1,15 @@
 CREATE TABLE MinimumSellQuantities (
-    BuildingModel NVARCHAR(10) NOT NULL,
-    ItemID NVARCHAR(20) NOT NULL,
-    MinimumQuantity INT NOT NULL CHECK (MinimumQuantity >= 0),
+    BuildingModel VARCHAR(10) NOT NULL,   -- FK to BuildingTypes
+    ItemID VARCHAR(20) NOT NULL,          -- FK to Items
+    MinimumQuantity INT NOT NULL,         -- Minimum quantity, must be >= 0
 
-    CONSTRAINT PK_MinSellQty PRIMARY KEY (BuildingModel, ItemID),
+    PRIMARY KEY (BuildingModel, ItemID),
 
-    CONSTRAINT FK_MinSellQty_BuildingTypes FOREIGN KEY (BuildingModel)
+    FOREIGN KEY (BuildingModel)
         REFERENCES BuildingTypes(BuildingTypeID),
 
-    CONSTRAINT FK_MinSellQty_Items FOREIGN KEY (ItemID)
-        REFERENCES Items(ItemID)
+    FOREIGN KEY (ItemID)
+        REFERENCES Items(ItemID),
+
+    CHECK (MinimumQuantity >= 0)
 );
-GO

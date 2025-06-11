@@ -1,12 +1,11 @@
 CREATE TABLE Warehouses (
-    WarehouseID NVARCHAR(20) PRIMARY KEY,
-    BuildingModel NVARCHAR(10) NOT NULL,
-    Location NVARCHAR(50) NOT NULL,
+    WarehouseID VARCHAR(20) PRIMARY KEY,        -- e.g. 'WH0000000001'
+    BuildingModel VARCHAR(10) NOT NULL,         -- FK to BuildingTypes
+    Location VARCHAR(50) NOT NULL,              -- FK to Locations
 
-    CONSTRAINT FK_Warehouses_BuildingTypes FOREIGN KEY (BuildingModel)
+    FOREIGN KEY (BuildingModel)
         REFERENCES BuildingTypes(BuildingTypeID),
 
-    CONSTRAINT FK_Warehouses_Locations FOREIGN KEY (Location)
+    FOREIGN KEY (Location)
         REFERENCES Locations(LocationID)
 );
-GO

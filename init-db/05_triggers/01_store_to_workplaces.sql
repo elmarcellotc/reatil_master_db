@@ -1,12 +1,14 @@
+DELIMITER $$
+
 CREATE TRIGGER trg_InsertStoreToWorkplaces
-ON Stores
-AFTER INSERT
-AS
+AFTER INSERT ON Stores
+FOR EACH ROW
 BEGIN
-    INSERT INTO Workplaces (WorkplaceID, WorkplaceType)
-    SELECT StoreID, 'Store'
-    FROM inserted
-    WHERE NOT EXISTS (
-        SELECT 1 FROM Workplaces WHERE WorkplaceID = inserted.StoreID
-    );
-END;
+    -- Insertar en Workplaces si no existe el WorkplaceID correspondiente al StoreID recién insertado
+    IF NOT EXISTS (SELECT 1 FROM Workplaces WHERE WorkplaceID = NEW.StoreID) THEN
+        INSERT INTO Workplaces (WorkplaceID, WorkplaceType)
+        VALUES (NEW.StoreID, 'Store');
+    END IF;
+END $$
+
+DELIMITER ;

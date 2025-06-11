@@ -1,4 +1,4 @@
 CREATE TABLE Workplaces (
-    WorkplaceID NVARCHAR(20) PRIMARY KEY,
-    WorkplaceType NVARCHAR(20) CHECK (WorkplaceType IN ('Store', 'Warehouse'))
+    WorkplaceID VARCHAR(20) PRIMARY KEY,              -- e.g. unique ID for workplace
+    WorkplaceType ENUM('Store', 'Warehouse') NOT NULL -- Must be 'Store' or 'Warehouse'
 );

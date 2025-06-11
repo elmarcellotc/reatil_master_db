@@ -1,8 +1,8 @@
 CREATE TABLE StoreSales (
-    SaleID NVARCHAR(30),                          -- e.g. 'SLLSLPGMNS000000001H8D2M2Y2019'
-    StoreID NVARCHAR(20) NOT NULL,                -- FK to Stores(StoreID)
-    Datetime DATETIME NOT NULL,                   -- e.g. '2019-02-01 08:00:00'
-    ItemID NVARCHAR(20) NOT NULL,                 -- FK to Items(ItemID)
+    SaleID VARCHAR(30),                              -- e.g. 'SLLSLPGMNS000000001H8D2M2Y2019'
+    StoreID VARCHAR(20) NOT NULL,                    -- FK to Stores(StoreID)
+    Datetime DATETIME NOT NULL,                       -- e.g. '2019-02-01 08:00:00'
+    ItemID VARCHAR(20) NOT NULL,                      -- FK to Items(ItemID)
     QuantitySold DECIMAL(12, 2) NOT NULL CHECK (QuantitySold >= 0),
     PricePerUnit DECIMAL(10, 4) NOT NULL CHECK (PricePerUnit >= 0),
     TotalIncome DECIMAL(14, 2) NOT NULL CHECK (TotalIncome >= 0),
@@ -15,4 +15,3 @@ CREATE TABLE StoreSales (
         REFERENCES Items(ItemID)
         ON DELETE CASCADE
 );
-GO

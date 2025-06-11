@@ -1,7 +1,7 @@
 -- Create the WarehouseStock table
 CREATE TABLE WarehouseStock (
-    WarehouseID NVARCHAR(20) NOT NULL,
-    ItemID NVARCHAR(20) NOT NULL,
+    WarehouseID VARCHAR(20) NOT NULL,
+    ItemID VARCHAR(20) NOT NULL,
     Quantity INT NOT NULL CHECK (Quantity >= 0),
 
     CONSTRAINT PK_WarehouseStock PRIMARY KEY (WarehouseID, ItemID),
@@ -14,4 +14,3 @@ CREATE TABLE WarehouseStock (
         REFERENCES Items(ItemID)
         ON DELETE CASCADE
 );
-GO

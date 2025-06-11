@@ -1,20 +1,20 @@
 CREATE TABLE Payroll (
-    worker_id NVARCHAR(20) PRIMARY KEY,
-    worker_category NVARCHAR(10) NOT NULL,
+    worker_id VARCHAR(20) PRIMARY KEY,
+    worker_category VARCHAR(10) NOT NULL,
     id_card_number INT NOT NULL UNIQUE,
-    last_name1 NVARCHAR(50) NOT NULL,
-    last_name2 NVARCHAR(50),
-    name1 NVARCHAR(50) NOT NULL,
-    name2 NVARCHAR(50),
-    gender NVARCHAR(10) NOT NULL,
-    ethnic NVARCHAR(50),
+    last_name1 VARCHAR(50) NOT NULL,
+    last_name2 VARCHAR(50),
+    name1 VARCHAR(50) NOT NULL,
+    name2 VARCHAR(50),
+    gender VARCHAR(10) NOT NULL,
+    ethnic VARCHAR(50),
     age INT NOT NULL,
     dependents INT NOT NULL DEFAULT 0,
-    workplace_id NVARCHAR(20) NOT NULL,
+    workplace_id VARCHAR(20) NOT NULL,
     hourly_salary DECIMAL(10, 2) NOT NULL,
 
     CONSTRAINT FK_Payroll_EmployCategory FOREIGN KEY (worker_category)
-        REFERENCES EmployCategories(EmployCategoryID),
+        REFERENCES EmployingCategories(EmployCategoryID),
 
     CONSTRAINT FK_Payroll_Workplace FOREIGN KEY (workplace_id)
         REFERENCES Workplaces(WorkplaceID),

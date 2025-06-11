@@ -1,4 +1,1 @@
-CREATE DATABASE RetailMasterDB;
-GO
-USE RetailMasterDB;
-GO
+CREATE DATABASE IF NOT EXISTS RetailMasterDB;

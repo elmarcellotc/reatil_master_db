@@ -1,16 +1,17 @@
 CREATE TABLE WarehousePrices (
-    WarehouseID NVARCHAR(20) NOT NULL,
-    ItemID NVARCHAR(20) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL CHECK (Price >= 0),
+    WarehouseID VARCHAR(20) NOT NULL,   -- FK to Warehouses
+    ItemID VARCHAR(20) NOT NULL,        -- FK to Items
+    Price DECIMAL(10, 2) NOT NULL,      -- Price, must be >= 0
 
-    CONSTRAINT PK_WarehousePrices PRIMARY KEY (WarehouseID, ItemID),
+    PRIMARY KEY (WarehouseID, ItemID),
 
-    CONSTRAINT FK_WarehousePrices_Warehouses FOREIGN KEY (WarehouseID)
+    FOREIGN KEY (WarehouseID)
         REFERENCES Warehouses(WarehouseID)
         ON DELETE CASCADE,
 
-    CONSTRAINT FK_WarehousePrices_Items FOREIGN KEY (ItemID)
+    FOREIGN KEY (ItemID)
         REFERENCES Items(ItemID)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+
+    CHECK (Price >= 0)
 );
-GO

@@ -1,7 +1,7 @@
 -- Create the StoreStock table
 CREATE TABLE StoreStock (
-    StoreID NVARCHAR(20) NOT NULL,
-    ItemID NVARCHAR(20) NOT NULL,
+    StoreID VARCHAR(20) NOT NULL,
+    ItemID VARCHAR(20) NOT NULL,
     Quantity INT NOT NULL CHECK (Quantity >= 0),
 
     CONSTRAINT PK_StoreStock PRIMARY KEY (StoreID, ItemID),
@@ -14,4 +14,3 @@ CREATE TABLE StoreStock (
         REFERENCES Items(ItemID)
         ON DELETE CASCADE
 );
-GO

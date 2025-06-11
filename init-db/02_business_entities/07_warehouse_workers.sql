@@ -1,6 +1,6 @@
 CREATE TABLE WarehouseWorkers (
-    WarehouseID NVARCHAR(20) NOT NULL,
-    worker_id NVARCHAR(20) NOT NULL,
+    WarehouseID VARCHAR(20) NOT NULL,     -- FK to Warehouses
+    worker_id VARCHAR(20) NOT NULL,       -- FK to Payroll
 
     CONSTRAINT PK_WarehouseWorkers PRIMARY KEY (WarehouseID, worker_id),
 
@@ -12,4 +12,3 @@ CREATE TABLE WarehouseWorkers (
         REFERENCES Payroll(worker_id)
         ON DELETE CASCADE
 );
-GO

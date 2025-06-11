@@ -1,16 +1,15 @@
 CREATE TABLE StorePrices (
-    StoreID NVARCHAR(20) NOT NULL,
-    ItemID NVARCHAR(20) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL CHECK (Price >= 0),
+    StoreID VARCHAR(20) NOT NULL,                         -- FK to Stores
+    ItemID VARCHAR(20) NOT NULL,                          -- FK to Items
+    Price DECIMAL(10, 2) NOT NULL CHECK (Price >= 0),     -- Price must be non-negative
 
-    CONSTRAINT PK_StorePrices PRIMARY KEY (StoreID, ItemID),
-    
-    CONSTRAINT FK_StorePrices_Stores FOREIGN KEY (StoreID)
+    PRIMARY KEY (StoreID, ItemID),
+
+    FOREIGN KEY (StoreID)
         REFERENCES Stores(StoreID)
         ON DELETE CASCADE,
 
-    CONSTRAINT FK_StorePrices_Items FOREIGN KEY (ItemID)
+    FOREIGN KEY (ItemID)
         REFERENCES Items(ItemID)
         ON DELETE CASCADE
 );
-GO

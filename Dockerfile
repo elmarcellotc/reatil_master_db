@@ -1,12 +1,9 @@
-# Use official Microsoft SQL Server image
-FROM mcr.microsoft.com/mssql/server:2022-latest
+FROM ubuntu:24.04
 
-# Set environment variables (set again via .env or docker-compose for flexibility)
-ENV ACCEPT_EULA=Y
-ENV MSSQL_PID=Developer
-
-# Optional: copy initialization scripts
+# Copy entire init-db directory
 COPY init-db/ /init-db/
+COPY scripts/ /scripts/
 
-# Run SQL Server
-CMD ["/opt/mssql/bin/sqlservr"]
+RUN bash /scripts/install.sh
+
+# CMD ["/scripts/init.sh"]
