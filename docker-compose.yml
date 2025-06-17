@@ -1,7 +1,16 @@
 services:
   masterdb:
     container_name: RetailMasterDB
-    build: .
+    build:
+      context: .
+      args:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_ETL_PASSWORD=${MYSQL_ETL_PASSWORD}
+        - MYSQL_ANALYST_PASSWORD=${MYSQL_ANALYST_PASSWORD}
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_ETL_PASSWORD: "${MYSQL_ETL_PASSWORD}"
+      MYSQL_ANALYST_PASSWORD: "${MYSQL_ANALYST_PASSWORD}"
     ports:
       - "3306:3306"
     volumes:

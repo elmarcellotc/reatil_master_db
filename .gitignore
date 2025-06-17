@@ -2,7 +2,9 @@
 .env
 
 # Ignore Docker volumes and runtime artifacts
-data/
+data/*
+!data/.gitkeep
+
 init-db/*.bak
 *.mdf
 *.ldf

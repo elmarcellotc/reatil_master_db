@@ -8,7 +8,7 @@ This project provides a reproducible environment for development, testing, and d
 
 ## 🐳 SQL Server Setup in Docker
 
-- **Base Image**: `mcr.microsoft.com/mssql/server:2022-latest`
+- **Base Image**: `ubuntu:24.04`
 - **Edition**: Developer (Free, full-featured for dev/testing)
 - **Port**: `1433` exposed locally
 - **Initialization**:

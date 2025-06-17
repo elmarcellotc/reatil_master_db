@@ -1,9 +1,18 @@
 FROM ubuntu:24.04
 
+ARG MYSQL_ROOT_PASSWORD
+ENV MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+ARG MYSQL_ETL_PASSWORD
+ENV MYSQL_ETL_PASSWORD=${MYSQL_ETL_PASSWORD}
+
+ARG MYSQL_ANALYST_PASSWORD
+ENV MYSQL_ANALYST_PASSWORD=${MYSQL_ANALYST_PASSWORD}
+
 # Copy entire init-db directory
 COPY init-db/ /init-db/
 COPY scripts/ /scripts/
 
-RUN bash /scripts/install.sh
+RUN chmod +x /scripts/install.sh && /scripts/install.sh
 
-# CMD ["/scripts/init.sh"]
+RUN kill 1
