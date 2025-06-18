@@ -2,6 +2,7 @@
 
 # Validación de que las variables de entorno estén definidas
 if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
+    echo $MYSQL_ROOT_PASSWORD
     echo "You must define MYSQL_ROOT_PASSWORD"
     exit 1
 fi

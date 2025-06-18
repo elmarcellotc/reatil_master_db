@@ -62,6 +62,11 @@ docker ps
 ```bash
 docker logs -f RetailMasterDB
 ```
+## Ensure the .env is well written
+
+```bash
+dos2unix .env
+```
 
 ---
 
