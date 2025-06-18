@@ -4,9 +4,9 @@ services:
     build:
       context: .
       args:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        - MYSQL_ETL_PASSWORD=${MYSQL_ETL_PASSWORD}
-        - MYSQL_ANALYST_PASSWORD=${MYSQL_ANALYST_PASSWORD}
+        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+        MYSQL_ETL_PASSWORD: "${MYSQL_ETL_PASSWORD}"
+        MYSQL_ANALYST_PASSWORD: "${MYSQL_ANALYST_PASSWORD}"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_ETL_PASSWORD: "${MYSQL_ETL_PASSWORD}"
@@ -18,6 +18,27 @@ services:
       - ./scripts:/scripts
       - ./data:/var/lib/mysql
     entrypoint: ["/bin/bash", "/scripts/init.sh"]
-    restart: unless-stopped
     stdin_open: true
     tty: true
+    networks:
+      - retailnet
+
+  retailetl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: retailetl
+    volumes:
+      - .:/app
+    environment:
+      MYSQL_ETL_PASSWORD: "${MYSQL_ETL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_ANALYST_PASSWORD: "${MYSQL_ANALYST_PASSWORD}"
+    networks:
+      - retailnet
+    depends_on:
+      - masterdb
+
+networks:
+  retailnet:
+    driver: bridge

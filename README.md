@@ -24,7 +24,7 @@ You can configure environment variables like the `SA_PASSWORD` through the `.env
 🚧 Build the Docker Container
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 🏗️ Initialize the Already Built Container
