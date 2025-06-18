@@ -17,7 +17,38 @@ This project provides a reproducible environment for development, testing, and d
 - **Data Persistence**:
   - Mounted volume `./data` ensures DB state survives restarts
 
-You can configure environment variables like the `SA_PASSWORD` through the `.env` file for security and flexibility.
+You can configure environment variables like the users passwords through the `.env` file for security and flexibility.
+---
+
+## 🌐 RetailNetwork (Shared Docker Network)
+
+Before building the container, make sure the shared RetailNetwork exists. This custom Docker network allows communication between this database container and others (like ETL or analysis services) in the Retail Data Science project.
+
+Run this once on your system:
+
+```bash
+docker network create RetailNetwork
+```
+
+You can check you networks using:
+
+```bash
+docker network ls
+```
+
+Remove all unused Docker networks (prune all except those in use)
+
+```bash
+docker network prune -f
+```
+
+Remove a specific Docker network by name (replace NETWORK_NAME with your network)
+
+```bash
+docker network rm NETWORK_NAME
+```
+
+📌 You only need to create `RetailNetwork` one time. All other containers in the project will connect to the same network.
 
 ## 🛠️ **Docker Commands for RetailMasterDB**:
 

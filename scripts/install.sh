@@ -51,19 +51,23 @@ mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT VERSION();"
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SHOW DATABASES;"
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -D RetailMasterDB -e "SHOW TABLES;"
 
-# Crear usuario etl user con permisos de INSERT
+# Create etl permissions
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "
 CREATE USER IF NOT EXISTS 'etl'@'%' IDENTIFIED BY '${MYSQL_ETL_PASSWORD}';
+GRANT USAGE ON RetailMasterDB.* TO 'etl'@'%';
+GRANT SELECT ON RetailMasterDB.* TO 'etl'@'%';
 GRANT INSERT ON RetailMasterDB.* TO 'etl'@'%';
+GRANT UPDATE ON RetailMasterDB.* TO 'etl'@'%';
+FLUSH PRIVILEGES;
 "
 
-# Crear usuario analyst con permisos de solo lectura (SELECT)
+
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "
 CREATE USER IF NOT EXISTS 'analyst'@'%' IDENTIFIED BY '${MYSQL_ANALYST_PASSWORD}';
+GRANT USAGE ON RetailMasterDB.* TO 'analyst'@'%';
 GRANT SELECT ON RetailMasterDB.* TO 'analyst'@'%';
+FLUSH PRIVILEGES;
 "
-
-mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "FLUSH PRIVILEGES;"
 
 echo "Users propertly added"
 
