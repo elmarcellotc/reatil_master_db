@@ -20,7 +20,6 @@ services:
       - ./init-db:/init-db
       - ./scripts:/scripts
       - ./data:/var/lib/mysql
-    entrypoint: ["/bin/bash", "/scripts/init.sh"]
     stdin_open: true
     tty: true
 

@@ -35,15 +35,17 @@ mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql
 mysqld_safe --user=mysql --datadir=/var/lib/mysql --skip-networking &
 
 until mysql -u root -e "SELECT 1;"; do
-    echo "Waiting 3 seconds for mysqld to be up..."
-    sleep 3
+    echo "Waiting 10 seconds for mysqld to be up..."
+    sleep 10
 done
 
 mysql -u root -e "
-CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_ROOT_PASSWORD}';
 FLUSH PRIVILEGES;
 "
+
+# mysql -u root < init-db/99_master_init.sql
+# mysql -u root -e "DROP DATABASE RetailMasterDB;"
 
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" < init-db/99_master_init.sql
 
@@ -72,6 +74,6 @@ FLUSH PRIVILEGES;
 echo "Users propertly added"
 
 
-mysqladmin -u root shutdown
+mysqladmin -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
 
 echo "MySQL has been shutdown"

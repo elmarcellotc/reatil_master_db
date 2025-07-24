@@ -11,7 +11,3 @@ ENV MYSQL_ANALYST_PASSWORD=${MYSQL_ANALYST_PASSWORD}
 # Copy entire init-db directory
 COPY init-db/ /init-db/
 COPY scripts/ /scripts/
-
-RUN chmod +x /scripts/install.sh && /scripts/install.sh
-
-RUN kill 1

@@ -28,9 +28,9 @@ echo "Starting MySQL in background..."
 mysqld_safe --user=mysql --datadir=/var/lib/mysql --bind-address=0.0.0.0 &
 
 # Wait until my sql be ready
-until mysql -u root -e "SELECT 1;"; do
-    echo "Waiting 3 seconds for mysqld to be up..."
-    sleep 3
+until mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;"; do
+    echo "Waiting 10 seconds for mysqld to be up..."
+    sleep 10
 done
 
 echo "MySQL started"

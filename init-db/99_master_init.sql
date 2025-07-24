@@ -13,27 +13,27 @@ SOURCE ./init-db/01_core_tables/04_building_types.sql;
 SOURCE ./init-db/01_core_tables/05_building_type_stock_capacity.sql;
 SOURCE ./init-db/01_core_tables/06_building_type_minimum_employees.sql;
 
--- Business entities
-SOURCE ./init-db/02_business_entities/04_warehouses.sql;
-SOURCE ./init-db/02_business_entities/01_stores.sql;
-SOURCE ./init-db/02_business_entities/02_store_prices.sql;
-SOURCE ./init-db/02_business_entities/05_warehouse_prices.sql;
-SOURCE ./init-db/02_business_entities/06_warehouse_min_sell_qty.sql;
-SOURCE ./init-db/02_business_entities/08_warehouse_stores.sql;
+-- Infrastructure
+SOURCE ./init-db/02_infrastructure/01_warehouses.sql;
+SOURCE ./init-db/02_infrastructure/02_stores.sql;
+SOURCE ./init-db/02_infrastructure/03_store_prices.sql;
+SOURCE ./init-db/02_infrastructure/04_warehouse_prices.sql;
+SOURCE ./init-db/02_infrastructure/05_warehouse_min_sell_qty.sql;
+SOURCE ./init-db/02_infrastructure/06_warehouse_stores.sql;
 
 -- Payroll
 
 -- store_workers (workplace_id, store) -> general Workplace (workplace_id, Ocupado o no, esencial o no, charge) -> payroll (with workplace id)
 -- warehouse_workers (workplace_id, warehouse) -> general Workplace (workplace_id, Ocupado o no, esencial o no, charge) -> payroll (with workplace id)
 
-SOURCE ./init-db/02_business_entities/03_store_workers.sql;
-SOURCE ./init-db/02_business_entities/07_warehouse_workers.sql;
-SOURCE ./init-db/02_business_entities/09_workplaces.sql;
-SOURCE ./init-db/04_payroll/01_payroll.sql;
+SOURCE ./init-db/03_payroll/01_workplaces.sql;
+SOURCE ./init-db/03_payroll/02_payroll.sql;
+SOURCE ./init-db/03_payroll/03_store_workers.sql;
+SOURCE ./init-db/03_payroll/04_warehouse_workers.sql;
 
 -- Stock tables
-SOURCE ./init-db/03_stock_tables/01_store_stock.sql;
-SOURCE ./init-db/03_stock_tables/02_warehouse_stock.sql;
+SOURCE ./init-db/04_stock_tables/01_store_stock.sql;
+SOURCE ./init-db/04_stock_tables/02_warehouse_stock.sql;
 
 -- Triggers
 SOURCE ./init-db/05_triggers/01_store_to_workplaces.sql;
