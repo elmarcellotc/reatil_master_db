@@ -1,0 +1,30 @@
+services:
+  masterdb:
+    container_name: RetailMasterDB
+    image: docker_image_retail_db
+    build:
+      context: .
+      args:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_ETL_PASSWORD: ${MYSQL_ETL_PASSWORD}
+        MYSQL_ANALYST_PASSWORD: ${MYSQL_ANALYST_PASSWORD}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ETL_PASSWORD: ${MYSQL_ETL_PASSWORD}
+      MYSQL_ANALYST_PASSWORD: ${MYSQL_ANALYST_PASSWORD}
+    networks:
+      - RetailNetwork
+    ports:
+      - "9234:3306"
+    volumes:
+      - ./init-db:/init-db
+      - ./scripts:/scripts
+      - ./logs:/var/log/
+    stdin_open: true
+    tty: true
+
+networks:
+  RetailNetwork:
+    external: true
+    name: RetailNetwork
+    driver: bridge

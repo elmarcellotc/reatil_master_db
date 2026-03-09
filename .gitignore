@@ -1,0 +1,53 @@
+# Ignore environment variables
+.env
+
+# Ignore Docker volumes and runtime artifacts
+data/*
+!data/.gitkeep
+venv/
+env/
+__pycache__/
+*.pyc
+
+init-db/*.bak
+*.mdf
+*.ldf
+*.db
+*.log
+
+# Ignore test results and logs
+test-logs/
+*.sql~          # Backup files
+*.tmp
+*.swp
+*.swo
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+
+# Docker volumes / persistent data
+data/
+db_data/
+postgres_data/
+mysql_data/
+volumes/
+
+# SQL dumps
+*.sql
+*.dump
+*.bak
+
+# Docker overrides
+docker-compose.override.yml
+
+# OS files
+.DS_Store
+
+# Logs and tests
+test/
+test-logs/
